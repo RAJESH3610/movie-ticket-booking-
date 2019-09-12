@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+<head><title> Book Movie Ticket </title>
+<link rel="shortcut icon" href="favicon.png">
+    <script>
+
+        	cities		=["Select Your City", "Hyderabad", "New Delhi"];
+
+	hydCinema	=["Select Cinema", "PVR", "INOX"];
+	delCinema	=["Select Cinema", "CineMax", "Prasad"];
+
+	pvrMov		=["Select Movie", "Baby Driver (A)", "Cars 3 - 3D (U)", "m1.jpg", "m2.jpg"];
+	inoxMov		=["Select Movie", "Despicable Me 3 - 3D (UA)", "Spider-Man: Homecoming (UA)", "m3.png", "m4.jpg"];
+	cinemaxMov	=["Select Movie", "The Boss Baby - 3D (UA)", "Transformers: The Last Knight - 3D (A)", "m5.jpg", "m6.jpg"];
+	prasadMov	=["Select Movie", "Wonder Woman - 3D (UA)", "Spider-Man: Homecoming - Hindi (UA)", "m7.jpg", "m8.jpg"];
+
+	pvrMov1		=["Choose Show Timing", "08:00 AM", "11:00 PM", "02:00 PM", "06:00 PM"];
+	pvrMov2		=["Choose Show Timing", "09:00 AM", "12:00 PM", "03:00 PM", "06:00 PM"];
+	inoxMov1		=["Choose Show Timing", "08:30 AM", "11:30 PM", "02:30 PM", "05:30 PM"];
+	inoxMov2		=["Choose Show Timing", "09:30 AM", "12:30 PM", "03:30 PM", "06:30 PM"];
+	cinemaxMov1	=["Choose Show Timing", "10:00 AM", "01:00 PM", "04:00 PM", "07:00 PM"];
+	cinemaxMov2	=["Choose Show Timing", "11:00 AM", "02:00 PM", "06:00 PM", "09:00 PM"];
+	prasadMov1	=["Choose Show Timing", "10:30 AM", "01:30 PM", "04:30 PM", "07:30 PM"];
+	prasadMov2	=["Choose Show Timing", "11:30 AM", "02:30 PM", "05:30 PM", "08:30 PM"];
+
+	classType		=["Select Class", "Gold (200/-)", "Balcony (150/-)"];
+
+        function bodyLoad()
+        {
+        	lstCity=document.getElementById("lstCity");
+	lstCinema=document.getElementById("lstCinema");
+	lstMovie=document.getElementById("lstMovie");
+	lstDate=document.getElementById("lstDate");
+	lstShow=document.getElementById("lstShow");
+	lstClass=document.getElementById("lstClass");
+	lstSeat=document.getElementById("lstSeat");
+
+	for(var i=0; i<cities.length; i++)
+	{
+	       var opt=document.createElement("option");
+	       opt.text=cities[i];
+	       opt.value=cities[i];
+	       lstCity.appendChild(opt);
+	}
+        }
+
+        function selectCinema()
+        {
+	lstCinema.innerHTML="";
+	lstMovie.innerHTML="";
+	lstDate.innerHTML="";
+	lstShow.innerHTML="";
+	lstClass.innerHTML="";
+	lstSeat.innerHTML="";
+
+	pictd.style.display="none";
+	details.style.display="none";
+	
+	switch(lstCity.value)
+	{
+	         case "Hyderabad" :
+		for(var i=0; i<hydCinema.length; i++)
+		{
+		       var opt=document.createElement("option");
+		       opt.text=hydCinema[i];
+		       opt.value=hydCinema[i];
+		       lstCinema.appendChild(opt);
+		}
+		break;
+
+	         case "New Delhi" :
+		for(var i=0; i<delCinema.length; i++)
+		{
+		       var opt=document.createElement("option");
+		       opt.text=delCinema[i];
+		       opt.value=delCinema[i];
+		       lstCinema.appendChild(opt);
+		}
+		break;
+	
+	          default :
+		alert("Please Select City");
+		lstCinema.innerHTML="";
+		break;
+	}
+        }
+
+        function selectMovie()
+        {
+	lstMovie.innerHTML="";
+	lstDate.innerHTML="";
+	lstShow.innerHTML="";
+	lstClass.innerHTML="";
+	lstSeat.innerHTML="";
+
+	pictd.style.display="none";
+	details.style.display="none";
+
+	switch(lstCinema.value)
+	{
+	         case "PVR" :
+		for(var i=0; i<pvrMov.length-2; i++)
+		{
+		       var opt=document.createElement("option");
+		       opt.text=pvrMov[i];
+		       opt.value=pvrMov[i];
+		       lstMovie.appendChild(opt);
+		}
+		break;
+
+	         case "INOX" :
+		for(var i=0; i<inoxMov.length-2; i++)
+		{
+		       var opt=document.createElement("option");
+		       opt.text=inoxMov[i];
+		       opt.value=inoxMov[i];
+		       lstMovie.appendChild(opt);
+		}
+		break;
+
+	         case "CineMax" :
+		for(var i=0; i<cinemaxMov.length-2; i++)
+		{
+		       var opt=document.createElement("option");
+		       opt.text=cinemaxMov[i];
+		       opt.value=cinemaxMov[i];
+		       lstMovie.appendChild(opt);
+		}
+		break;
+
+	         case "Prasad" :
+		for(var i=0; i<prasadMov.length-2; i++)
+		{
+		       var opt=document.createElement("option");
+		       opt.text=prasadMov[i];
+		       opt.value=prasadMov[i];
+		       lstMovie.appendChild(opt);
+		}
+		break;
+	
+	          default :
+		alert("Please Select Cinema");
+		lstMovie.innerHTML="";
+		break;
+	}
+        }
+
+        function showTiming()
+        {
+	lstDate.innerHTML="";
+	lstShow.innerHTML="";
+	lstClass.innerHTML="";
+	lstSeat.innerHTML="";
+
+	pictd=document.getElementById("pictd");
+	pictd.style.display="block";
+	details.style.display="none";
+
+	pic=document.getElementById("pic");
+	pic.src="";
+	switch(lstMovie.value)
+	{
+	         case pvrMov[1] :
+		pic.src=pvrMov[3];
+		for(var i=0; i<pvrMov1.length; i++)
+		{
+		       var opt=document.createElement("option");
+		       opt.text=pvrMov1[i];
+		       opt.value=pvrMov1[i];
+		       lstShow.appendChild(opt);
+		}
+		break;
+
+	         case pvrMov[2] :
+		pic.src=pvrMov[4];
+		for(var i=0; i<pvrMov2.length; i++)
+		{
+		       var opt=document.createElement("option");
+		       opt.text=pvrMov2[i];
+		       opt.value=pvrMov2[i];
+		       lstShow.appendChild(opt);
+		}
+		break;
+
+	         case inoxMov[1] :
+		pic.src=inoxMov[3];
+		for(var i=0; i<inoxMov1.length; i++)
+		{
+		       var opt=document.createElement("option");
+		       opt.text=inoxMov1[i];
+		       opt.value=inoxMov1[i];
+		       lstShow.appendChild(opt);
+		}
+		break;
+
+	         case inoxMov[2] :
+		pic.src=inoxMov[4];
+		for(var i=0; i<inoxMov2.length; i++)
+		{
+		       var opt=document.createElement("option");
+		       opt.text=inoxMov2[i];
+		       opt.value=inoxMov2[i];
+		       lstShow.appendChild(opt);
+		}
+		break;
+
+	         case cinemaxMov[1] :
+		pic.src=cinemaxMov[3];
+		for(var i=0; i<cinemaxMov1.length; i++)
+		{
+		       var opt=document.createElement("option");
+		       opt.text=cinemaxMov1[i];
+		       opt.value=cinemaxMov1[i];
+		       lstShow.appendChild(opt);
+		}
+		break;
+
+	         case cinemaxMov[2] :
+		pic.src=cinemaxMov[4];
+		for(var i=0; i<cinemaxMov2.length; i++)
+		{
+		       var opt=document.createElement("option");
+		       opt.text=cinemaxMov2[i];
+		       opt.value=cinemaxMov2[i];
+		       lstShow.appendChild(opt);
+		}
+		break;
+
+	         case prasadMov[1] :
+		pic.src=prasadMov[3];
+		for(var i=0; i<prasadMov1.length; i++)
+		{
+		       var opt=document.createElement("option");
+		       opt.text=prasadMov1[i];
+		       opt.value=prasadMov1[i];
+		       lstShow.appendChild(opt);
+		}
+		break;
+
+	         case prasadMov[2] :
+		pic.src=prasadMov[4];
+		for(var i=0; i<prasadMov2.length; i++)
+		{
+		       var opt=document.createElement("option");
+		       opt.text=prasadMov2[i];
+		       opt.value=prasadMov2[i];
+		       lstShow.appendChild(opt);
+		}
+		break;
+	
+	          default :
+		alert("Please Select a Movie");
+		lstShow.innerHTML="";
+		break;
+	}
+        }
+
+        function selectClass()
+        {
+	lstClass.innerHTML="";
+	lstSeat.innerHTML="";	
+
+	details.style.display="none";
+
+	lstClass=document.getElementById("lstClass");
+	for(var i=0; i<classType.length; i++)
+	{
+      	      var opt=document.createElement("option");
+	      opt.text=classType[i];
+	      opt.value=classType[i];
+	      lstClass.appendChild(opt);
+	}
+        }
+
+        function selectSeat()
+        {
+	lstSeat.innerHTML="";
+
+	details.style.display="none";
+
+	seat=["Select No. of Seat", 1, 2, 3, 4, 5, 6];
+	for(var i=0; i<seat.length; i++)
+	{
+	      var opt=document.createElement("option");
+	      opt.text=seat[i];
+	      opt.value=seat[i];
+	      lstSeat.appendChild(opt);
+	}
+        }
+
+        function allSelected()
+        {
+	details.style.display="none";
+        }
+
+        function bookTicket()
+        {
+	pictd.style.display="none";
+
+	details=document.getElementById("details");	
+	
+	if(lstCity.value!="Select Your City")
+	{
+	       if(lstCinema.value!="Select Cinema")
+	       {
+	              if(lstMovie.value!="Select Movie")
+	              {
+		pictd.style.display="block";
+	 	if(lstDate.value!="")
+		{
+		        if(lstShow.value!="Choose Show Timing")
+		        {
+		               if(lstClass.value!="Select Class")
+		               {
+			 if(lstSeat.value!="Select No. of Seat")
+			 {
+			         pictd.style.display="none";
+			         details.style.display="block";
+			         dCity.innerHTML=lstCity.value;
+			         dCinema.innerHTML=lstCinema.value;
+			         dMovie.innerHTML=lstMovie.value;
+			         dDate.innerHTML=lstDate.value;
+			         dShow.innerHTML=lstShow.value;
+			         dClass.innerHTML=lstClass.value;
+			         dSeat.innerHTML=lstSeat.value;
+			         paymentBlock.style.display="none";
+			         successBlock.style.display="none";
+			 }
+			 else
+			 {
+			         alert("Select No. of Seat");
+			 }
+		               }
+		               else
+		               {
+			 alert("Select ticket class type");
+		               }
+		        }
+		        else
+		        {
+		               alert("Select Show Timing");
+		        }
+		}
+		else
+		{
+		        alert("Select Date");
+		}
+	              }
+	              else
+	              {
+		alert("Select a Movie");
+ 	              }
+	       }
+	       else
+	       {
+	              alert("Select a Cinema Name");
+	       }	   	
+	}
+	else
+	{
+	       alert("Select a City Name");
+	}
+
+	if(lstClass.value==classType[1])
+	{
+	        cost=200*lstSeat.value;
+	}
+	if(lstClass.value==classType[2])
+	{
+	        cost=150*lstSeat.value;
+	}
+	dCost.innerHTML=cost+"/-";
+        }
+
+        function goToPayment()
+        {
+	paymentBlock.style.display="block";
+	successBlock.style.display="none";
+	card=document.getElementById("card");
+	card.value="";
+	month=document.getElementById("month");
+	month.value="Month";
+	year=document.getElementById("year");
+	year.value="";
+	cvv=document.getElementById("cvv");
+	cvv.value="";
+	pin=document.getElementById("pin");
+	pin.value="";
+
+	cardPattern=/[0-9]{16}/;
+	yearPattern=/[0-9]{4}/;
+	cvvPattern=/[0-9]{3}/;
+	pinPattern=/[0-9]{4}/;
+        }
+
+        function Payment()
+        {
+	if(card.value.match(cardPattern))
+	{
+	             if(month.value!=="Month")
+	             {
+	                   if(year.value!=="" && year.value.match(yearPattern))
+	                  {
+		if(cvv.value!=="" && cvv.value.match(cvvPattern))
+		{
+		      if(pin.value!=="" && pin.value.match(pinPattern))
+		      {
+		              successBlock=document.getElementById("successBlock");
+	      	              successBlock.style.display="block";
+		      }
+		      else
+		      {
+		              alert("Plz Enter 'valid Pin'");
+		      }
+		}
+		else
+		{
+		      alert("Plz Enter 'valid CVV'");
+		}
+	                  }
+	                  else
+	                  {
+		alert("Plz Enter 'Card Expiry Year'");
+	                  }
+	             }
+	             else
+	             {
+	        	alert("Plz Enter 'Card Expiry Month'");
+	             }
+	}
+	else
+	{
+	       alert("Plz Enter 'valid 16-digit Card No'");
+	}
+        }
+
+    </script>
+</head>
+
+<body bgcolor="gray" onload="bodyLoad()">
+    <form>
+           <div width="1330" align="center">
+	<img src="Banner.jpg" width="1020" height="400" border="3" style="border-color:yellow">
+           </div>
+
+           <table align="center" bgcolor="black" height="600">
+	<tr>
+	      <td width="430" style="display:none" id="pictd" align="center"> <img id="pic" width="430" height="600" align="center"> </td>
+	      <td width="407" align="center" bgcolor="white">
+	             <table width="417" align="center" bgcolor="black">
+		<tr height="40">
+ 		      <td align="center" bgcolor="blue"> <font color="white" size="4"> Select Your Details </font> </td>
+		</tr>
+      	        	<tr height="70">
+      		      <td align="center">  <select id="lstCity" onchange="selectCinema()"> </select>  </td>
+      	        	</tr> 
+	      	<tr height="70">
+      		      <td align="center">  <select id="lstCinema" onchange="selectMovie()"> </select>  </td>
+	        	</tr>
+        		<tr height="70">
+      		      <td align="center">  <select id="lstMovie" onchange="showTiming()"> </select>  </td>
+	        	</tr>
+	      	<tr height="70">
+      		      <td align="center"> <input type="date" id="lstDate">  </td>
+	        	</tr>
+        		<tr height="70">
+		      <td align="center">  <select id="lstShow" onchange="selectClass()"> </select>  </td>
+	        	</tr>
+        		<tr height="70">
+      		      <td align="center">  <select id="lstClass" onchange="selectSeat()"> </select>  </td>
+	        	</tr>
+        		<tr height="70">
+      		      <td align="center">  <select id="lstSeat" onchange="allSelected()"></select>  </td>
+	        	</tr>
+	        	<tr height="54">
+		      <td align="center" bgcolor="green">
+		            <input type="button" value="Book" onclick="bookTicket()"> 
+		      </td>
+	       	</tr>
+	             </table>
+	      </td>
+	     
+	      <td width="480" height="604"  id="details" bgcolor="white" style="display:none">
+                                    <font size="4">
+                    	              <table>
+	        	<tr>
+		       <td colspan="2" align="center" bgcolor="red">  Confirm Your Details </td>
+		</tr>
+	                	<tr>
+		      <td width="150"> Your City </td>
+		      <td width="330"> &nbsp : &nbsp <span id="dCity"></span> </td>
+		</tr>
+	                	<tr>
+		      <td> Cinema </td>
+		      <td> &nbsp : &nbsp <span id="dCinema"></span> </td>
+		</tr>
+	                	<tr>
+		      <td> Movie </td>
+		      <td> &nbsp : &nbsp <span id="dMovie"></span> </td>
+		</tr>
+	                	<tr>
+		      <td> Date </td>
+		      <td> &nbsp : &nbsp <span id="dDate"></span> </td>
+		</tr>
+	                	<tr>
+		      <td> Show Timing </td>
+		      <td> &nbsp : &nbsp <span id="dShow"></span> </td>
+		</tr>
+	                	<tr>
+		      <td> Ticket Class </td>
+		      <td> &nbsp : &nbsp <span id="dClass"></span> </td>
+		</tr>
+	                	<tr>
+		      <td>  No. of Tickets </td>
+		      <td> &nbsp : &nbsp <span id="dSeat"></span> </td>
+		</tr>
+	                	<tr>
+		      <td> Total Cost </td>
+		      <td> &nbsp : &nbsp <span id="dCost"></span> </td>
+		</tr>
+	                	<tr>
+		<tr height="10"></tr>
+	                	<tr>
+		      <td colspan="2" align="center"> <input type="button" value="Go to Payment Process" onclick="goToPayment()"> </td>
+		</tr>
+	                	<tr>
+	                </table>
+		
+	                <table id="paymentBlock" style="display:none" align="center">
+	                	<tr>
+		      <td> Enter Card Number </td>
+		      <td> &nbsp : &nbsp <input type="text" size="20" id="card" maxlength="16"></td>
+		</tr>
+	                	<tr>
+		      <td> Select Expiry </td>
+		      <td> &nbsp : &nbsp 
+			<select id="month">
+			        <option> Month </option>
+			        <option> January </option>
+			        <option> February </option>
+			        <option> March </option>
+			        <option> April </option>
+			        <option> May </option>
+			        <option> June </option>
+			        <option> July </option>
+			        <option> August </option>
+			        <option> September </option>
+			        <option> October </option>
+			        <option> November </option>
+			        <option> December </option>
+			</select>
+			<input type="number" min="2017" max="2999" placeholder="Year" id="year">
+		      </td>
+		</tr>
+	                	<tr>
+		      <td> Enter CVV </td>
+		      <td> &nbsp : &nbsp <input type="text" size="3" id="cvv" maxlength="3"> </td>
+		</tr>
+	                	<tr>
+		      <td> Enter  Pin </td>
+		      <td> &nbsp : &nbsp <input type="text" size="4" id="pin" maxlength="4"> </td>
+		</tr>
+	                	<tr>
+		      <td colspan="2" align="center"> <input type="button" value="Payment" onclick="Payment()"></td>
+		</tr>
+	                   	<tr height="10"></tr>
+	                </table>
+	                <table id="successBlock" style="display:none">
+	                	<tr height="155">
+		      <td colspan="2" align="center" > <img src="success.png"> </td>
+		</tr>
+                                        </table>
+                                   </font>
+                              </td>
+	</tr>
+           </table>
+    </form>
+</body>
+</html>
